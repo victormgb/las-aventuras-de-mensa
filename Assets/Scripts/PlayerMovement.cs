@@ -17,6 +17,11 @@ public class PlayerMovement : MonoBehaviour
 
     public Tilemap obstacles;
 
+    [HideInInspector]
+    public float horizontalDirection;
+    [HideInInspector]
+    public float verticalDirection;
+
     // Update is called once per frame
     void Update()
     {
@@ -25,8 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
         if(movement.y != 0 || movement.x != 0)
         {
-            animator.SetFloat("Horizontal2", movement.x);
-            animator.SetFloat("Vertical2", movement.y);
+            horizontalDirection = movement.x;
+            verticalDirection = movement.y;
+            animator.SetFloat("Horizontal2", horizontalDirection);
+            animator.SetFloat("Vertical2", verticalDirection);
         }
 
         animator.SetFloat("Horizontal", movement.x);
@@ -64,5 +71,10 @@ public class PlayerMovement : MonoBehaviour
         //{
         //    Debug.Log("We hit " + enemy);
         //}
+
+        GameObject go = ObjectPool.instance.GetPoolObject("Arrow");
+        go.transform.position = transform.position;
+        go.transform.rotation = transform.rotation;
+        go.SetActive(true);
     }
 }
