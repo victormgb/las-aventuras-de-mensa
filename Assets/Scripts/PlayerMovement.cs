@@ -27,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Attack();
+        }
+
 
     }
 
@@ -40,5 +45,17 @@ public class PlayerMovement : MonoBehaviour
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
 
+    }
+
+    void Attack()
+    {
+        animator.SetTrigger("Attack");
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        //Damage Them
+        //foreach (Collider2D enemy in hitEnemies)
+        //{
+        //    Debug.Log("We hit " + enemy);
+        //}
     }
 }
