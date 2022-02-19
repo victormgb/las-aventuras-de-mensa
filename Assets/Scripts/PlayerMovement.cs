@@ -23,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        if(movement.y != 0 || movement.x != 0)
+        {
+            animator.SetFloat("Horizontal2", movement.x);
+            animator.SetFloat("Vertical2", movement.y);
+        }
+
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
@@ -50,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     void Attack()
     {
         animator.SetTrigger("Attack");
+
         //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         //Damage Them

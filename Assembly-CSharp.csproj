@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\ObjectPool\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Arrow\ArrowBehaivour.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
