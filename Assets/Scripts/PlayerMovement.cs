@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     Vector2 movement;
+    private Vector3 moveToPosition;
 
     public Animator animator;
+
+    public Tilemap obstacles;
 
     // Update is called once per frame
     void Update()
@@ -22,11 +26,19 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
+
+
     }
 
     private void FixedUpdate()
     {
-        // Movement
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        moveToPosition = transform.position + new Vector3(movement.x, movement.y, 0);
+        Vector3Int obstacleMapTile = obstacles.WorldToCell(moveToPosition);
+        if (obstacles.GetTile(obstacleMapTile) == null)
+        {
+            // Movement
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
+
     }
 }
