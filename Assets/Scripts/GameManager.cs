@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.inGame;
         controller = GameObject.Find("Player").GetComponent<PlayerMovement>();
         MenuManager.sharedInstance.HideGameOver();
-        controller.StartGame();
+        //controller.StartGame();
     }
 
     void Awake()
@@ -63,6 +63,11 @@ public class GameManager : MonoBehaviour
         }
 
         this.currentGameState = newGameState;
+    }
+
+    public void GameOver()
+    {
+        SetGameState(GameState.gameOver);
     }
 
 

@@ -19,8 +19,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Canvas Hearth1 = GameObject.FindWithTag("Hearth").GetComponent<Canvas>();
-        Debug.Log(Hearth1);
+
     }
 
     public void ShowGameOver()
