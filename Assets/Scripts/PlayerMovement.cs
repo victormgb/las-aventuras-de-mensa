@@ -21,8 +21,12 @@ public class PlayerMovement : MonoBehaviour
     public float horizontalDirection;
     [HideInInspector]
     public float verticalDirection;
-
     // Update is called once per frame
+
+    public const int MAX_LIFE = 3, INITIAL_LIFE =3;
+
+    private int healthPoints;
+
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -76,5 +80,37 @@ public class PlayerMovement : MonoBehaviour
         go.transform.position = transform.position;
         go.transform.rotation = transform.rotation;
         go.SetActive(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.tag == "Enemy")
+        {
+            int enemyDamage = -1;
+            CollectHealth(enemyDamage);
+            return;
+        }
+    }
+
+    public void StartGame()
+    {
+        healthPoints = INITIAL_LIFE;
+    }
+
+    private void CollectHealth(int points)
+    {
+        this.healthPoints += points;
+        Debug.Log(healthPoints);
+
+        if(this.healthPoints <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("Te has morido");
     }
 }

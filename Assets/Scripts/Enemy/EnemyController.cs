@@ -52,6 +52,11 @@ public class EnemyController : MonoBehaviour
         {
             Deactivate();
         }
+
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Pasando Jugador");
+        }
     }
 
     private void Deactivate()
