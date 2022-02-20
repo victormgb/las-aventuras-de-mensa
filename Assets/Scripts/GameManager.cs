@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     {
         currentGameState = GameState.inGame;
         controller = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        MenuManager.sharedInstance.HideGameOver();
         controller.StartGame();
     }
 

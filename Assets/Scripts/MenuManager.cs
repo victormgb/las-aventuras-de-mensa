@@ -19,7 +19,8 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Canvas Hearth1 = GameObject.FindWithTag("Hearth").GetComponent<Canvas>();
+        Debug.Log(Hearth1);
     }
 
     public void ShowGameOver()
@@ -27,9 +28,20 @@ public class MenuManager : MonoBehaviour
         gameOverCanvas.enabled = true;
     }
 
+    public void HideGameOver()
+    {
+        Debug.Log("PASA X ACA");
+        gameOverCanvas.enabled = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void HearthManager(bool enable, int hearthIndex)
+    {
+
     }
 }
