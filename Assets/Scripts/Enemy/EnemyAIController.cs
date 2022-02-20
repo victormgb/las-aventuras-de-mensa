@@ -7,8 +7,11 @@ public class EnemyAIController : MonoBehaviour
 {
     AIPath path;
     PlayerMovement player;
+    public EnemyController Enemy;
 
     public float chaseDistance;
+    Vector2 movement;
+    float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +26,24 @@ public class EnemyAIController : MonoBehaviour
     void FixedUpdate()
     {
         float distance = Vector3.Distance(player.transform.position, transform.position);
-        if(distance <= chaseDistance)
+        Vector3 direction = path.targetDirection;
+        float x = direction.x;
+        float y = direction.y;
+        Enemy.animator.SetFloat("Horizontal", x);
+        Enemy.animator.SetFloat("Vertical", y);
+
+        if (distance <= chaseDistance)
         {
             path.canSearch = true;
+            Enemy.animator.SetBool("isRunning", true);
+            
         } else
         {
             path.canSearch = false;
+            if (path.TargetReached)
+            {
+                Enemy.animator.SetBool("isRunning", false);
+            } 
         }
     }
 }
