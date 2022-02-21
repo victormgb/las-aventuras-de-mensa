@@ -7,7 +7,8 @@ public class EnemyAIController : MonoBehaviour
 {
     AIPath path;
     PlayerMovement player;
-    public EnemyController Enemy;
+    EnemyController Enemy;
+    GameObject EnemyChild;
 
     public float chaseDistance;
     Vector2 movement;
@@ -20,6 +21,9 @@ public class EnemyAIController : MonoBehaviour
         
 
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+        EnemyChild = gameObject.transform.GetChild(0).gameObject;
+        Enemy = EnemyChild.GetComponent<EnemyController>();
     }
 
     // Update is called once per frame

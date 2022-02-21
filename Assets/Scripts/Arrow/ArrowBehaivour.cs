@@ -30,6 +30,7 @@ public class ArrowBehaivour : MonoBehaviour
         {
             //rb.velocity = (-1 * transform.up) * speed;
             transform.Rotate(0f, 0f, 180f);
+
         }
         else if (horizontalDirection == 0 && verticalDirection == 1)
         {
@@ -47,6 +48,9 @@ public class ArrowBehaivour : MonoBehaviour
         {
             transform.Rotate(0f, 0f, 180f);
         }
+
+        rb.freezeRotation = true;
+
     }
 
     // Update is called once per frame

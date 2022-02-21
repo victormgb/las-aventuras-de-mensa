@@ -24,7 +24,6 @@ public class AudioScript : MonoBehaviour
         if (other.tag == "Player")
         { // only an object tagged Player stops the sound
             
-            Debug.Log("Player entered!");
             audioObject.Play();
         }
     }
