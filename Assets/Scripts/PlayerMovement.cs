@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     public Tilemap obstacles;
+    public Tilemap obstacleDoor;
 
     [HideInInspector]
     public float horizontalDirection;
@@ -52,7 +53,9 @@ public class PlayerMovement : MonoBehaviour
     {
         moveToPosition = transform.position + new Vector3(movement.x, movement.y, 0);
         Vector3Int obstacleMapTile = obstacles.WorldToCell(moveToPosition);
-        if (obstacles.GetTile(obstacleMapTile) == null)
+        Vector3Int obstacleMapTileDoor = obstacleDoor.WorldToCell(moveToPosition);
+
+        if (obstacles.GetTile(obstacleMapTile) == null && obstacleDoor.GetTile(obstacleMapTileDoor) == null)
         {
             // Movement
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);

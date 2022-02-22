@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class GameManager : MonoBehaviour
 
     private PlayerMovement controller;
 
+    public int collectedGem = 0;
+
+    public GameObject obstacledoor;
+    TilemapRenderer ostacledoorRenderer;
+    Tilemap obstacledoorTile;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +31,11 @@ public class GameManager : MonoBehaviour
         controller = GameObject.Find("Player").GetComponent<PlayerMovement>();
         MenuManager.sharedInstance.HideGameOver();
         //controller.StartGame();
+
+        ostacledoorRenderer = obstacledoor.GetComponent<TilemapRenderer>();
+        obstacledoorTile = obstacledoor.GetComponent<Tilemap>();
+
+
     }
 
     void Awake()
@@ -38,6 +50,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+        if(collectedGem >= 3)
+        {
+            obstacledoorTile.enabled = false;
+            ostacledoorRenderer.enabled = false;
+             
+        }
     }
 
     private void SetGameState(GameState newGameState)
@@ -68,6 +86,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         SetGameState(GameState.gameOver);
+    }
+
+    public void CollectGem(Collectable collectable)
+    {
+        collectedGem += collectable.value;
     }
 
 
