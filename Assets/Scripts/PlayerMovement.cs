@@ -55,11 +55,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3Int obstacleMapTile = obstacles.WorldToCell(moveToPosition);
         Vector3Int obstacleMapTileDoor = obstacleDoor.WorldToCell(moveToPosition);
 
-        if (obstacles.GetTile(obstacleMapTile) == null && obstacleDoor.GetTile(obstacleMapTileDoor) == null)
+        if (obstacles.GetTile(obstacleMapTile) == null)
         {
+            if(obstacleDoor.GetTile(obstacleMapTileDoor) == null || (obstacleDoor.GetTile(obstacleMapTileDoor) != null && GameManager.sharedInstance.collectedGem >= 3 ))
+            {
+                rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+            }
             // Movement
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+            
         }
+
+        
 
     }
 
